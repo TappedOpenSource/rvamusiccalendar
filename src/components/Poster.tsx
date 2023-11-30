@@ -37,11 +37,19 @@ export default function Poster({ events }: {
 
             }}
         >
-            <div style={{ display: 'flex', width: 1442.26, height: 1529.52, left: -276, top: -176.57, position: 'absolute' }}>
+            <div style={{
+                display: 'flex',
+                width: 1442.26,
+                height: 1529.52,
+                left: -276,
+                top: -176.57,
+                position: 'absolute',
+                filter: 'blur(7px)',
+            }}>
                 <div style={{ width: 1174.44, height: 1430.96, left: 267.82, top: 98.56, position: 'absolute', background: '#0080DD', boxShadow: '200px 200px 200px ', filter: 'blur(200px)' }}></div>
-                <div style={{ width: 746.32, height: 1205.57, left: 0, top: 0, position: 'absolute', background: '#6300C6', boxShadow: '300px 300px 300px ', filter: 'blur(300px)' }}></div>
                 <div style={{ width: 547.09, height: 788.40, left: 875.06, top: 132, position: 'absolute', background: '#003EB6', boxShadow: '200px 200px 200px ', filter: 'blur(200px)' }}></div>
                 <div style={{ width: 758.43, height: 554.81, left: 651.21, top: 721.69, position: 'absolute', background: '#6300C6', boxShadow: '250px 250px 250px ', filter: 'blur(250px)' }}></div>
+                {/* <div style={{ width: 746.32, height: 1205.57, left: 0, top: 0, position: 'absolute', background: '#6300C6', boxShadow: '300px 300px 300px ', filter: 'blur(250px)' }}></div> */}
             </div>
             <div
                 style={{
@@ -122,7 +130,11 @@ export default function Poster({ events }: {
                             marginTop: "0",
                             marginBottom: "0",
                         }}
-                    >{(event.door_time.split(":").slice(0, 2).join(':'))} @ {event.name ?? event.venue_name} {event.street_address}</p>
+                    >{
+                            (event.door_time.split(":").slice(0, 2).join(':'))
+                        } @ {
+                            event.name ?? event.venue_name
+                        } {event.street_address}</p>
                 </div>
             ))}
             <div
