@@ -36,7 +36,19 @@ export async function POST(req: Request) {
             >
                 <h1>RVA Music Calendar</h1>
                 {events.map((event, index) => (
-                    <div key={index}>
+                    <div
+                        key={index}
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: "100%",
+                            height: "100%",
+                            backgroundColor: "#000",
+                            color: "#fff",
+                        }}
+                    >
                         <h2>{event.event_name}</h2>
                         <h3>{event.stage}</h3>
                         <h4>{event.event_datetime}</h4>
