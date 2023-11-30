@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
     return new ImageResponse(
         (
             <div>
