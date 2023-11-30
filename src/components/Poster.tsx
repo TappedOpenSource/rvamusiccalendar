@@ -112,14 +112,17 @@ export default function Poster({ events }: {
                             wordBreak: "break-word",
                             marginBottom: "0",
                             marginTop: "0",
+                            opacity: 0.6,
+                            color: "#ccc",
                         }}
                     >{event.artists.map(({ artistName }) => artistName).join(', ')}</h3>
                     <p
                         style={{
+                            fontSize: "1.3rem",
                             marginTop: "0",
                             marginBottom: "0",
                         }}
-                    >{(new Date(event.door_time)).toLocaleTimeString()} @ {event.name ?? event.venue_name} {event.street_address}</p>
+                    >{(event.door_time.split(":").slice(0, 2).join(':'))} @ {event.name ?? event.venue_name} {event.street_address}</p>
                 </div>
             ))}
             <div
