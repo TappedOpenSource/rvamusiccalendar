@@ -1,6 +1,6 @@
 
 export async function GET(req: Request) {
-    return {
+    return Response.json({
         success: true,
-    }
+    })
 }
