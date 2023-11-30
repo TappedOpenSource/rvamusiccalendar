@@ -57,7 +57,7 @@ export default function Poster({ events }: {
                 style={{
                     fontSize: "8rem",
                     fontWeight: "bold",
-                    fontFamily: "RubikBold",
+                    fontFamily: "RubikBlack",
                     wordBreak: "break-word",
                 }}
             >RVA Music Calendar</h1>
@@ -107,7 +107,7 @@ export default function Poster({ events }: {
                             marginTop: "0",
                             marginBottom: "0",
                         }}
-                    >{event.description}</p>
+                    >{(new Date(event.door_time)).toLocaleTimeString()} @ {event.venue_name} {event.street_address}</p>
                 </div>
             ))}
             <div

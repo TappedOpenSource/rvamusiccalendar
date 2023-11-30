@@ -17,11 +17,13 @@ export async function POST(req: Request) {
     const regularUrl = `${siteUrl}/${font}/static/${font}-Regular.ttf`;
     const italicUrl = `${siteUrl}/${font}/static/${font}-Italic.ttf`;
     const boldUrl = `${siteUrl}/${font}/static/${font}-ExtraBold.ttf`;
+    const blackUrl = `${siteUrl}/${font}/static/${font}-Black.ttf`;
 
-    const [fontDataRegular, fontDataItalic, fontDataBold] = await Promise.all([
+    const [fontDataRegular, fontDataItalic, fontDataBold, fontDataBlack] = await Promise.all([
         fetch(regularUrl).then((res) => res.arrayBuffer()),
         fetch(italicUrl).then((res) => res.arrayBuffer()),
         fetch(boldUrl).then((res) => res.arrayBuffer()),
+        fetch(blackUrl).then((res) => res.arrayBuffer()),
     ]);
 
     return new ImageResponse(
@@ -46,6 +48,11 @@ export async function POST(req: Request) {
                     name: `${font}Bold`,
                     data: fontDataBold,
                     weight: 800,
+                },
+                {
+                    name: `${font}Black`,
+                    data: fontDataBlack,
+                    weight: 900,
                 },
             ],
         }

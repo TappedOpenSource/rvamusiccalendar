@@ -11,8 +11,6 @@ export const runtime = 'edge';
 export async function GET(req: Request) {
     const events: RVAEvent[] = [
         {
-            id: 1,
-            created_at: (new Date()).toISOString(),
             event_name: 'whoa whoa whoa',
             description: 'the description',
             event_datetime: (new Date()).toISOString(),
@@ -20,14 +18,21 @@ export async function GET(req: Request) {
             price: 10000,
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
-            source_id: '1234',
-            googleCalendarEventId: '1234',
-            venue: 123,
-            stage: 'the stage',
+            venue_name: 'The Camel',
+            street_address: '123 the street',
+            artists: [
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+            ],
         },
         {
-            id: 1,
-            created_at: (new Date()).toISOString(),
             event_name: 'whoa whoa whoa',
             description: 'the description',
             event_datetime: (new Date()).toISOString(),
@@ -35,14 +40,21 @@ export async function GET(req: Request) {
             price: 10000,
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
-            source_id: '1234',
-            googleCalendarEventId: '1234',
-            venue: 123,
-            stage: 'the stage',
+            venue_name: 'The Camel',
+            street_address: '123 the street',
+            artists: [
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+            ],
         },
         {
-            id: 1,
-            created_at: (new Date()).toISOString(),
             event_name: 'whoa whoa whoa',
             description: 'the description',
             event_datetime: (new Date()).toISOString(),
@@ -50,10 +62,19 @@ export async function GET(req: Request) {
             price: 10000,
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
-            source_id: '1234',
-            googleCalendarEventId: '1234',
-            venue: 123,
-            stage: 'the stage',
+            venue_name: 'The Camel',
+            street_address: '123 the street',
+            artists: [
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+                {
+                    artistName: 'artist name',
+                },
+            ],
         },
     ];
 
@@ -61,11 +82,13 @@ export async function GET(req: Request) {
     const regularUrl = `${siteUrl}/${font}/static/${font}-Regular.ttf`;
     const italicUrl = `${siteUrl}/${font}/static/${font}-Italic.ttf`;
     const boldUrl = `${siteUrl}/${font}/static/${font}-ExtraBold.ttf`;
+    const blackUrl = `${siteUrl}/${font}/static/${font}-Black.ttf`;
 
-    const [fontDataRegular, fontDataItalic, fontDataBold] = await Promise.all([
+    const [fontDataRegular, fontDataItalic, fontDataBold, fontDataBlack] = await Promise.all([
         fetch(regularUrl).then((res) => res.arrayBuffer()),
         fetch(italicUrl).then((res) => res.arrayBuffer()),
         fetch(boldUrl).then((res) => res.arrayBuffer()),
+        fetch(blackUrl).then((res) => res.arrayBuffer()),
     ]);
 
     return new ImageResponse(
@@ -91,6 +114,11 @@ export async function GET(req: Request) {
                     name: `${font}Bold`,
                     data: fontDataBold,
                     weight: 800,
+                },
+                {
+                    name: `${font}Black`,
+                    data: fontDataBlack,
+                    weight: 900,
                 },
             ],
         }

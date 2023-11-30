@@ -1,7 +1,5 @@
 
 export type RVAEvent = {
-    id: number,
-    created_at: string,
     event_name: string,
     description: string,
     event_datetime: string,
@@ -9,8 +7,7 @@ export type RVAEvent = {
     price: number,
     url: string,
     image_url: string,
-    source_id: string,
-    googleCalendarEventId: string,
-    venue: number;
-    stage: string,
+    venue_name: string;
+    street_address: string,
+    artists: { artistName: string }[],
 };
