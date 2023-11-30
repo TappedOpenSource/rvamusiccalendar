@@ -2,46 +2,52 @@ import Poster from "@/components/Poster";
 import { RVAEvent } from "@/types/event";
 import { ImageResponse } from "next/og";
 
+const width = 1080;
+const height = 1080;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const runtime = 'edge';
+
 
 export async function POST(req: Request) {
     const { events } = await req.json() as { events: RVAEvent[] };
     console.log({ events });
 
-    // const font = 'Rubik';
-    // const fontDataRegular = await fetch(
-    //     new URL(`../../../${font}/static/${font}-Regular.ttf`, import.meta.url)
-    // ).then((res) => res.arrayBuffer());
+    const font = 'Rubik';
+    const regularUrl = `${siteUrl}/${font}/static/${font}-Regular.ttf`;
+    const italicUrl = `${siteUrl}/${font}/static/${font}-Italic.ttf`;
+    const boldUrl = `${siteUrl}/${font}/static/${font}-ExtraBold.ttf`;
 
-    // const fontDataItalic = await fetch(
-    //     new URL(`../../../${font}/static/${font}-Italic.ttf`, import.meta.url)
-    // ).then((res) => res.arrayBuffer());
-
-    // const fontDataBold = await fetch(
-    //     new URL(`../../../${font}/static/${font}-Extraold.ttf`, import.meta.url)
-    // ).then((res) => res.arrayBuffer());
-
-    // console.log({ fontDataRegular, fontDataItalic, fontDataBold });
+    const [fontDataRegular, fontDataItalic, fontDataBold] = await Promise.all([
+        fetch(regularUrl).then((res) => res.arrayBuffer()),
+        fetch(italicUrl).then((res) => res.arrayBuffer()),
+        fetch(boldUrl).then((res) => res.arrayBuffer()),
+    ]);
 
     return new ImageResponse(
         <Poster events={events} />,
         {
-            width: 1080,
-            height: 1080,
-            // fonts: [
-            //     {
-            //         name: font,
-            //         data: fontDataRegular,
-            //     },
-            //     {
-            //         name: `${font}Italic`,
-            //         data: fontDataItalic,
-            //     },
-            //     {
-            //         name: `${font}Bold`,
-            //         data: fontDataBold,
-            //     },
-            // ],
+            width,
+            height,
+            fonts: [
+                {
+                    name: font,
+                    data: fontDataRegular,
+                    style: 'normal',
+                    weight: 400,
+                },
+                {
+                    name: `${font}Italic`,
+                    data: fontDataItalic,
+                    style: 'italic',
+                    weight: 400,
+                },
+                {
+                    name: `${font}Bold`,
+                    data: fontDataBold,
+                    weight: 800,
+                },
+            ],
         }
     );
 }

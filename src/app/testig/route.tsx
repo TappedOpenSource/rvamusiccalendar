@@ -71,6 +71,7 @@ export async function GET(req: Request) {
     return new ImageResponse(
         <Poster events={events} />,
         {
+            debug: true,
             width,
             height,
             fonts: [

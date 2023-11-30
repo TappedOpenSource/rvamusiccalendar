@@ -1,8 +1,26 @@
 import { RVAEvent } from "@/types/event";
 
+const colorMap = {
+    Monday: {},
+    Tuesday: {},
+    Wednesday: {},
+    Thursday: {},
+    Friday: {},
+    Saturday: {},
+    Sunday: {},
+};
+
 export default function Poster({ events }: {
     events: RVAEvent[]
 }) {
+    const today = new Date();
+    const dateString = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     return (
         <div
             style={{
@@ -25,6 +43,16 @@ export default function Poster({ events }: {
                 <div style={{ width: 547.09, height: 788.40, left: 875.06, top: 132, position: 'absolute', background: '#003EB6', boxShadow: '200px 200px 200px ', filter: 'blur(200px)' }}></div>
                 <div style={{ width: 758.43, height: 554.81, left: 651.21, top: 721.69, position: 'absolute', background: '#6300C6', boxShadow: '250px 250px 250px ', filter: 'blur(250px)' }}></div>
             </div>
+            <div
+                style={{
+                    position: "absolute",
+                    top: "1rem",
+                    right: "1rem",
+                    display: "flex",
+                }}
+            >
+                <p>{dateString}</p>
+            </div>
             <h1
                 style={{
                     fontSize: "8rem",
@@ -33,24 +61,69 @@ export default function Poster({ events }: {
                     wordBreak: "break-word",
                 }}
             >RVA Music Calendar</h1>
+            {events.length === 0 && (
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
+                    <h3
+                        style={{
+                            fontSize: "4rem",
+                            fontWeight: "bold",
+                            fontFamily: "RubikBold",
+                        }}
+                    >{`No events today :(`}</h3>
+                </div>
+            )}
             {events.map((event, index) => (
                 <div
                     key={index}
                     style={{
                         display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        justifyContent: "space-between",
+                        paddingBottom: "2rem",
                     }}
                 >
-                    <p>{index}</p>
-                    <p>{event.event_name}</p>
-                    <p>{event.stage}</p>
-                    <p>{event.event_datetime}</p>
-                    <p>{event.description}</p>
-                    <p>{event.price}</p>
+                    <h3
+                        style={{
+                            fontSize: "2rem",
+                            fontWeight: "bold",
+                            fontFamily: "RubikBold",
+                            wordBreak: "break-word",
+                            marginBottom: "0",
+                            marginTop: "0",
+                        }}
+                    >{event.event_name}</h3>
+                    <p
+                        style={{
+                            marginTop: "0",
+                            marginBottom: "0",
+                        }}
+                    >{event.description}</p>
                 </div>
             ))}
+            <div
+                style={{
+                    position: "absolute",
+                    bottom: "1rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                    fontFamily: "RubikBold",
+                }}
+            >
+                <p>@RVAMusicCalendar</p>
+                <div style={{ width: "1rem" }} />
+                <p>bit.ly/rvamusiccalendar</p>
+            </div>
         </div>
     );
 }
