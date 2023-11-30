@@ -19,6 +19,7 @@ export async function GET(req: Request) {
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
             venue_name: 'The Camel',
+            name: 'The Camel',
             street_address: '123 the street',
             artists: [
                 {
@@ -41,17 +42,11 @@ export async function GET(req: Request) {
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
             venue_name: 'The Camel',
+            name: 'The Camel',
             street_address: '123 the street',
             artists: [
-                {
-                    artistName: 'artist name',
-                },
-                {
-                    artistName: 'artist name',
-                },
-                {
-                    artistName: 'artist name',
-                },
+                { artistName: 'Hip Hop Henry' },
+                { artistName: 'Billy Crystal Fingers' }
             ],
         },
         {
@@ -63,17 +58,12 @@ export async function GET(req: Request) {
             url: 'https://rvamusiccalendar.com',
             image_url: 'https://rvamusiccalendar.com',
             venue_name: 'The Camel',
+            name: 'The Camel',
             street_address: '123 the street',
             artists: [
-                {
-                    artistName: 'artist name',
-                },
-                {
-                    artistName: 'artist name',
-                },
-                {
-                    artistName: 'artist name',
-                },
+                { artistName: 'Brookhouse' },
+                { artistName: 'Dawning' },
+                { artistName: 'Brian Caperton' }
             ],
         },
     ];

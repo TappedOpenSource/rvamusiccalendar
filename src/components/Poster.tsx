@@ -94,20 +94,32 @@ export default function Poster({ events }: {
                 >
                     <h3
                         style={{
-                            fontSize: "2rem",
+                            fontSize: "2.5rem",
                             fontWeight: "bold",
                             fontFamily: "RubikBold",
                             wordBreak: "break-word",
                             marginBottom: "0",
                             marginTop: "0",
                         }}
-                    >{event.event_name}</h3>
+                    >
+                        {event.event_name}
+                    </h3>
+                    <h3
+                        style={{
+                            fontSize: "1.5rem",
+                            fontWeight: "bold",
+                            fontFamily: "RubikBold",
+                            wordBreak: "break-word",
+                            marginBottom: "0",
+                            marginTop: "0",
+                        }}
+                    >{event.artists.map(({ artistName }) => artistName).join(', ')}</h3>
                     <p
                         style={{
                             marginTop: "0",
                             marginBottom: "0",
                         }}
-                    >{(new Date(event.door_time)).toLocaleTimeString()} @ {event.venue_name} {event.street_address}</p>
+                    >{(new Date(event.door_time)).toLocaleTimeString()} @ {event.name ?? event.venue_name} {event.street_address}</p>
                 </div>
             ))}
             <div

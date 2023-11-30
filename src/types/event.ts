@@ -8,6 +8,7 @@ export type RVAEvent = {
     url: string,
     image_url: string,
     venue_name: string;
+    name: string;
     street_address: string,
     artists: { artistName: string }[],
 };
