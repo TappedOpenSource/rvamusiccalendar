@@ -5,7 +5,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <div className=" bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-      <main className="flex h-[80vh] flex-col items-center justify-center p-24">
+      <main className="flex h-[80vh] flex-col items-center justify-center px-2">
         <h1
           className="text-4xl md:text-6xl font-extrabold text-center"
         >RVA Music Calendar</h1>
