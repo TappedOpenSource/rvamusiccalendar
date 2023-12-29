@@ -1,10 +1,17 @@
+'use client';
 
-import Image from "next/image"
-import Link from "next/link"
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
+  const calUrl = "https://calendar.google.com/calendar/ical/810rm4o2829cdhurresns7a4cc%40group.calendar.google.com/public/basic.ics"
+  const copyCalToClipboard = () => {
+    navigator.clipboard.writeText(calUrl)
+    toast.success("Copied to clipboard!")
+  }
+
   return (
     <div className=" bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+      <div><Toaster/></div>
       <main className="flex h-[60vh] flex-col items-center justify-center px-2">
         <h1
           className="text-4xl md:text-6xl font-extrabold text-center"
@@ -14,10 +21,17 @@ export default function Home() {
           className="text-2xl text-center"
         >the source of truth for music events going on in Richmond, Virginia</h3>
         <div className="h-4" />
-        <Link 
-          href="https://calendar.google.com/calendar/ical/810rm4o2829cdhurresns7a4cc%40group.calendar.google.com/public/basic.ics"
-          className="bg-white font-bold text-black px-6 py-4 rounded-xl"
-        >add to your calendar!</Link>
+        <div
+          className="w-11/12 md:w-auto shadow-xl shadow-inner px-4 py-3 bg-white text-gray-500 rounded-xl" 
+        >
+        <p
+          onClick={copyCalToClipboard} 
+          className="text-center text-sm text-ellipsis overflow-hidden" 
+        >
+          {calUrl}
+        </p>
+        </div>
+        <p className="text-gray-200">(click to copy)</p>
       </main>
       <div className="flex justify-center items-center">
         {/* <Image
