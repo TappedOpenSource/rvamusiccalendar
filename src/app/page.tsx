@@ -1,12 +1,14 @@
 'use client';
 
+import { track } from "@vercel/analytics";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const calUrl = "https://calendar.google.com/calendar/ical/810rm4o2829cdhurresns7a4cc%40group.calendar.google.com/public/basic.ics"
-  const copyCalToClipboard = () => {
+  const copyCalToClipboard = async () => {
     navigator.clipboard.writeText(calUrl)
     toast.success("Copied to clipboard!")
+    track("copied-to-clipboard", { url: calUrl })
   }
 
   return (
